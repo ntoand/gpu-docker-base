@@ -20,21 +20,22 @@ docker build . -t ntoand/gpu-docker-base
 
 ```
 docker images
+docker run -it --rm --gpus all ntoand/gpu-docker-base bash
 ```
 
 ## Run with an interative mode
 
 ```
-docker run --rm -it -v /absolute/path/to/source:/molemap_dir -v /absolute/path/to/checkpoints:/checkpoints -e PORT=PORT -p PORT:PORT molemap_phase2_base
+docker run --rm -it -v /absolute/path/to/source:/working_dir -v /absolute/path/to/checkpoints:/checkpoints -e PORT=PORT -p PORT:PORT molemap_phase2_base
 
 Example:
-docker run --rm -it -v /Users/toand/git/merc/ai/molemap/docker/phase2_deploy/resnet50_transformer:/molemap_dir -v /Users/toand/git/merc/ai/molemap/docker/phase2_deploy/checkpoints:/checkpoints -e PORT=3000 -p 3000:3000 molemap_phase2_base
+docker run --rm -it -v /Users/toand/git/merc/ai/molemap/docker/phase2_deploy/resnet50_transformer:/working_dir -v /Users/toand/git/merc/ai/molemap/docker/phase2_deploy/checkpoints:/checkpoints -e PORT=3000 -p 3000:3000 ntoand/gpu-docker-base
 ```
 
 ## Run as daemon
 
 ```
-docker run -d -v /absolute/path/to/source:/molemap_dir -v /absolute/path/to/checkpoints:/checkpoints -e PORT=PORT -p PORT:PORT molemap_phase2_base
+docker run -d -v /absolute/path/to/source:/working_dir -v /absolute/path/to/checkpoints:/checkpoints -e PORT=PORT -p PORT:PORT ntoand/gpu-docker-base
 ```
 
 
